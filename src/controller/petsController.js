@@ -1,4 +1,5 @@
 const Pets = require("../models/petsModel");
+const OngOrHome = require("../models/ongsOrTemporaryHomesModel");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 
@@ -71,7 +72,6 @@ const getBySpecifications = async (req, res) => {
 
     if (!species) {
       findPets = await Pets.find({
-        // status: { $regex: reqStatus, $options: "i" },
         gender: gender
       });
     } else if (!gender) {
@@ -102,56 +102,65 @@ const createNewPet = async (req, res) => {
   try {
     const authHeader = req.get("authorization");
     if (!authHeader) {
-      return res.status(401).json("You need authorization to access here");
+      return res.status(401).send("You need authorization to access here");
     }
     const token = authHeader.split(" ")[1];
     await jwt.verify(token, SECRET, async function (erro) {
       if (erro) {
         return res.status(403).send("Access denied");
       }
-      const allPets = await Pets.find();
-      res.status(200).json(allPets);
+      const {
+        name,
+        species,
+        gender,
+        age,
+        disabilityOrIllness,
+        descriptiondisabilityOrIllness,
+        status,
+        neutered,
+        wormed,
+        vaccinated,
+        size,
+        ongsOrTemporaryHomesId,
+        responsible,
+        whatsapp,
+        email,
+      } = req.body;
+      if (!ongsOrTemporaryHomesId) {
+        return res.status(400).json({
+          message: "The ongsOrTemporaryHomes Id is required"
+        });
+      }
+      const findongsOrTemporaryHomes = await OngOrHome.findById(ongsOrTemporaryHomesId);
+      if (!findongsOrTemporaryHomes) {
+        return res.status(404).json({
+          message: "ongsOrTemporaryHomes not found"
+        });
+      }
+      const newPet = new Pets({
+        name,
+        species,
+        gender,
+        age,
+        disabilityOrIllness,
+        descriptiondisabilityOrIllness,
+        status,
+        neutered,
+        wormed,
+        vaccinated,
+        size,
+        ongsOrTemporaryHomesId,
+        responsible,
+        whatsapp,
+        email,
+      });
+      const savedPet = await newPet.save();
+      res.status(200).json(savedPet);
     });
-    const {
-      name,
-      species,
-      gender,
-      age,
-      disabilityOrIllness,
-      descriptiondisabilityOrIllness,
-      status,
-      neutered,
-      wormed,
-      vaccinated,
-      size,
-      ongsOrTemporaryHomesId,
-      responsible,
-      whatsapp,
-      email,
-    } = req.body;
-    const newPet = new Pets({
-      name,
-      species,
-      gender,
-      age,
-      disabilityOrIllness,
-      descriptiondisabilityOrIllness,
-      status,
-      neutered,
-      wormed,
-      vaccinated,
-      size,
-      ongsOrTemporaryHomesId,
-      responsible,
-      whatsapp,
-      email,
-    });
-    const savedPet = await newPet.save();
-    res.status(201).json(savedPet);
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      message: error.message,
+      message: error.message
     });
   }
 };

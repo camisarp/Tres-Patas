@@ -41,6 +41,10 @@ const getByName = async (req, res) => {
     } = req.query;
 
     const findvetAndSpecialists = await vetAndSpecialistsModel.find({
+      // name: {
+      //   $regex: reqName,
+      //   $options: "i"
+      // },
       name: name,
     });
 
@@ -64,6 +68,10 @@ const getByClassification = async (req, res) => {
     } = req.query;
 
     const findvetAndSpecialists = await vetAndSpecialists.find({
+      // classification: {
+      //   $regex: ReqClassification,
+      //   $options: "i"
+      // },
       classification: classification,
     });
 

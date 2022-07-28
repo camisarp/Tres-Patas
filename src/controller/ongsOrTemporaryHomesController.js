@@ -41,8 +41,8 @@ const getByName = async (req, res) => {
     } = req.query;
 
     const findOngOrHome = await OngOrHome.find({
-      status: {
-        $regex: reqStatus,
+      name: {
+        $regex: reqName,
         $options: "i"
       },
       name: name,
@@ -68,10 +68,10 @@ const getByClassification = async (req, res) => {
     } = req.query;
 
     const findOngOrHome = await OngOrHome.find({
-      status: {
-        $regex: reqStatus,
-        $options: "i"
-      },
+      // classification: {
+      //   $regex: ReqClassification,
+      //   $options: "i"
+      // },
       classification: classification,
     });
 
