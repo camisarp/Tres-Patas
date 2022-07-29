@@ -8,42 +8,40 @@ const address = new mongoose.Schema({
   "zipCode": String
 })
 
-const usersSchema = new mongoose.Schema({
+const petShopOrSpecializedHouseSchema = new mongoose.Schema({
   _id: {
     type: mongoose.Schema.Types.ObjectId,
     default: mongoose.Types.ObjectId
   },
-  fullName: {
+  name: {
     type: String,
-    required: true,
-    unique: true
-  },
-  age: {
-    type: Number,
     required: true
   },
-  genderIdentity: {
-    type: String,
+  classification: {
+    type: [String],
+    required: true
   },
   address: {
     type: [address],
     required: true
   },
   landline: {
-    type: String,
+    type: [String]
   },
   cellPhoneOrWhatsapp: {
-    type: [String],
-    required: true
+    type: [String]
   },
   email: {
-    type: String,
-    required: true,
-    unique: true
+    type: String
   },
-  password: {
+  instagram: {
+    type: String
+  },
+  description: {
     type: String,
-    required: true,
+    default: "Uninformed",
+    minLength: 0,
+    maxLength: 500
   }
 }, {
   timestamps: true
@@ -51,6 +49,6 @@ const usersSchema = new mongoose.Schema({
   versionKey: false,
 });
 
-const users = mongoose.model("user", usersSchema);
+const petShopOrSpecializedHouse = mongoose.model("petShopOrSpecializedHouse", petShopOrSpecializedHouseSchema);
 
-module.exports = users;
+module.exports = petShopOrSpecializedHouse;

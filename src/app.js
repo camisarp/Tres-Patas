@@ -2,11 +2,12 @@ require('dotenv-safe').config()
 const express = require("express")
 const cors = require("cors")
 const mongoose = require("./database/mongooseConnect.js")
+const index = require("./routes/index")
 const usersRoute = require('./routes/usersRoutes')
 const petsRoute = require('./routes/petsRoutes')
 const ongOuLarRoutes = require('./routes/ongsOrTemporaryHomesRoutes')
-const petShopsAndSpecialtyHousesRoutes = require('./routes/petShopsAndSpecialtyHousesRoutes')
-const vetAndSpecialistsRoutes = require('./routes/vetAndSpecialistsRoutes')
+const petShopsOrSpecialtyHousesRoutes = require('./routes/petShopsOrSpecialtyHousesRoutes')
+const vetOrSpecialistsRoutes = require('./routes/vetOrSpecialistsRoutes')
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('../swagger/swagger_output.json');
 
@@ -16,12 +17,13 @@ app.use(cors())
 
 mongoose.connect()
 
+app.use('/', index)
 app.use(usersRoute)
 app.use(petsRoute)
 app.use(ongOuLarRoutes)
-app.use(petShopsAndSpecialtyHousesRoutes)
-app.use(vetAndSpecialistsRoutes)
-app.use('/minha-rota-de-documentacao', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use(petShopsOrSpecialtyHousesRoutes)
+app.use(vetOrSpecialistsRoutes)
+app.use('/my-documentation-route', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 
 module.exports = app

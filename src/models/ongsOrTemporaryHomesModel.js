@@ -1,5 +1,13 @@
 const mongoose = require("mongoose");
 
+const address = new mongoose.Schema({
+  "street": String,
+  "district": String,
+  "city": String,
+  "state": String,
+  "zipCode": String
+})
+
 const ongsOrTemporaryHomesSchema = new mongoose.Schema({
   _id: {
     type: mongoose.Schema.Types.ObjectId,
@@ -14,25 +22,29 @@ const ongsOrTemporaryHomesSchema = new mongoose.Schema({
     required: true
   },
   address: {
-    type: Array,
+    type: [address],
     required: true
   },
-  landline: {
-    type: String
+  responsible: {
+    type: String,
+    default: "Uninformed"
   },
-  cellPhoneAndWhatsapp: {
+  landline: {
+    type: [String], default: "Uninformed",
+  },
+  cellPhoneOrWhatsapp: {
     type: [String],
     required: true
   },
   email: {
-    type: String
+    type: String,
   },
   instagram: {
-    type: String
+    type: String,
   },
   description: {
     type: String,
-    required: true,
+    default: "Uninformed",
     minLength: 0,
     maxLength: 500
   }

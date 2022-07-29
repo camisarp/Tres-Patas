@@ -1,15 +1,16 @@
 const controller = require("../controller/ongsOrTemporaryHomesController");
+const {
+    auth
+} = require("../middleware/authentication");
 const express = require("express");
 const router = express.Router();
 
 router.get("/ongsOrTemporaryHomes", controller.getAllOngOrHome);
-router.get("/ongsOrTemporaryHomes/name", controller.getByName);
-router.get("/ongsOrTemporaryHomes/classification", controller.getByClassification);
 router.get("/ongsOrTemporaryHomes/address", controller.getByAddress);
-router.get("/ongsOrTemporaryHomes/:id", controller.getOngOrHomeId);
+router.get("/ongsOrTemporaryHome/:id", controller.getOngOrHomeId);
 
-router.post("/ongsOrTemporaryHomes/", controller.createNewOngOrHome);
-router.patch("/ongsOrTemporaryHomes/:id", controller.updateOngOrHomeId);
-router.delete("/ongsOrTemporaryHomes/:id", controller.deleteOngOrHomeId);
+router.post("/ongsOrTemporaryHomes/registration", auth, controller.createNewOngOrHome);
+router.patch("/ongsOrTemporaryHome/update/:id", auth, controller.updateOngOrHomeId);
+router.delete("/ongsOrTemporaryHome/delete/:id", auth, controller.deleteOngOrHomeId);
 
 module.exports = router;

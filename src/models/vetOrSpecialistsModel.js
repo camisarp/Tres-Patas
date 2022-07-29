@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const address = new mongoose.Schema({
+  "name": String,
   "street": String,
   "district": String,
   "city": String,
@@ -8,42 +9,46 @@ const address = new mongoose.Schema({
   "zipCode": String
 })
 
-const usersSchema = new mongoose.Schema({
+const vetsOrSpecialistsSchema = new mongoose.Schema({
   _id: {
     type: mongoose.Schema.Types.ObjectId,
     default: mongoose.Types.ObjectId
   },
-  fullName: {
+  name: {
     type: String,
     required: true,
     unique: true
   },
-  age: {
-    type: Number,
+  profession: {
+    type: [String],
     required: true
   },
-  genderIdentity: {
-    type: String,
+  specialty: {
+    type: [String],
+    required: true
   },
-  address: {
+  whereDoYouWork: {
     type: [address],
     required: true
   },
   landline: {
-    type: String,
+    type: [String],
+    default: "Uninformed"
   },
   cellPhoneOrWhatsapp: {
     type: [String],
-    required: true
+    default: "Uninformed"
+  },
+  instagram: {
+    type: String
   },
   email: {
-    type: String,
-    required: true,
-    unique: true
+    type: String
   },
-  password: {
+  description: {
     type: String,
-    required: true,
+    minLength: 0,
+    maxLength: 500
   }
 }, {
   timestamps: true
@@ -51,6 +56,6 @@ const usersSchema = new mongoose.Schema({
   versionKey: false,
 });
 
-const users = mongoose.model("user", usersSchema);
+const vetsOrSpecialists = mongoose.model("vetsOrSpecialists", vetsOrSpecialistsSchema);
 
-module.exports = users;
+module.exports = vetsOrSpecialists;

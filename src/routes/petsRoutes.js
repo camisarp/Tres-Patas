@@ -1,14 +1,15 @@
 const controller = require("../controller/petsController");
+const {
+    auth
+} = require("../middleware/authentication");
 const express = require("express");
 const router = express.Router();
 
 router.get("/pets", controller.getAllPets);
-router.get("/pets/status", controller.getByStatus);
-router.get("/pets/specifications", controller.getBySpecifications);
 router.get("/pets/:id", controller.getPetById);
 
-router.post("/pets", controller.createNewPet);
-router.patch("/pets/:id", controller.updatePetById);
-router.delete("/pets/:id", controller.deletePetById);
+router.post("/pet/registration", auth, controller.createNewPet);
+router.patch("/pet/update/:id", auth, controller.updatePetById);
+router.delete("/pet/delete/:id", auth, controller.deletePetById);
 
 module.exports = router;

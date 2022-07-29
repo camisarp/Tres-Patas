@@ -25,9 +25,8 @@ const petsSchema = new mongoose.Schema({
     type: [String],
     required: true
   },
-  descriptiondisabilityOrIllness: {
+  description: {
     type: String,
-    default: "Uninformed"
   },
   status: {
     type: String,
@@ -54,18 +53,6 @@ const petsSchema = new mongoose.Schema({
     required: true,
     ref: "ongsOrTemporaryHomes"
   },
-  responsible: {
-    type: String,
-    required: true
-  },
-  whatsapp: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  }
 }, {
   timestamps: true
 }, {

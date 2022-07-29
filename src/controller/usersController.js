@@ -35,7 +35,7 @@ const login = (req, res) => {
     }, function (error, user) {
         if (error) {
             return res.status(500).send({
-                message: 'Header not found'
+                message: 'Header not found.'
             });
         };
         if (!user) {
@@ -48,7 +48,9 @@ const login = (req, res) => {
         const token = jwt.sign({
             email: req.body.email
         }, SECRET);
-        return res.status(200).send(token);
+        return res.status(200).send({
+            token
+        });
     });
 };
 
