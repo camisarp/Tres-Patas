@@ -3,17 +3,21 @@ const ongsOrTemporaryHomesModel = require("../src/models/ongsOrTemporaryHomesMod
 describe("GET route test", () => {
     const ongsOrTemporaryHomes = new ongsOrTemporaryHomesModel({
         "name": "Mundo do Marley",
-        "classification": "ONG",
+        "classification": [
+            "ONG"
+        ],
         "address": [{
-            "logradouro": "Av. Batalha do Tuiuti",
-            "bairro": "Aguas compridas",
-            "cidade": "Olinda",
-            "estado": "Pernambuco",
-            "cep": "53280-270"
+            "street": "Av. Batalha do Tuiuti",
+            "district": "Aguas compridas",
+            "city": "Olinda",
+            "state": "Pernambuco",
+            "zipCode": "53280-270",
+            "_id": "62e42952f2df601883ef92f4"
         }],
-        "landline": "(81) 3000-0000",
-        "cellPhoneAndWhatsapp": "(81) 98995-0128",
-        "email": "mundodomarley@gmail.com",
+        "responsible": "Uninformed",
+        "cellPhoneOrWhatsapp": [
+            "(81) 98995-0128"
+        ],
         "instagram": "@mundo.domarley",
         "description": "Animais retirados das ruas, vitimas de maus tratos e abandono."
     });
@@ -23,23 +27,8 @@ describe("GET route test", () => {
     it("It must call the schema and return the correct classification of the NGO or temporary home", () => {
         expect(ongsOrTemporaryHomes.classification).toStrictEqual(["ONG"]);
     });
-    it("It must call the schema and return the correct address of the NGO or temporary home", () => {
-        expect(ongsOrTemporaryHomes.address).toStrictEqual([{
-            "logradouro": "Av. Batalha do Tuiuti",
-            "bairro": "Aguas compridas",
-            "cidade": "Olinda",
-            "estado": "Pernambuco",
-            "cep": "53280-270"
-        }]);
-    });
-    it("You must call the schema and return the correct landline of the NGO or temporary home", () => {
-        expect(ongsOrTemporaryHomes.landline).toBe("(81) 3000-0000");
-    });
     it("You must call the schema and return the correct cell phone and whatsapp of the NGO or temporary home", () => {
-        expect(ongsOrTemporaryHomes.cellPhoneAndWhatsapp).toStrictEqual(["(81) 98995-0128"]);
-    });
-    it("Must call the schema and return the correct email from the NGO or temporary home", () => {
-        expect(ongsOrTemporaryHomes.email).toBe("mundodomarley@gmail.com");
+        expect(ongsOrTemporaryHomes.cellPhoneOrWhatsapp).toStrictEqual(["(81) 98995-0128"]);
     });
     it("Must call the schema and return the correct instagram from the NGO or temporary home", () => {
         expect(ongsOrTemporaryHomes.instagram).toBe("@mundo.domarley");
@@ -52,23 +41,30 @@ describe("GET route test", () => {
 describe("CREATE route test", () => {
     const ongsOrTemporaryHomes = new ongsOrTemporaryHomesModel({
         "name": "Mundo do Marley",
-        "classification": "Associação protetora de animais",
+        "classification": [
+            "ONG"
+        ],
         "address": [{
-            "logradouro": "Av. Batalha do Tuiuti",
-            "bairro": "Aguas compridas",
-            "cidade": "Olinda",
-            "estado": "Pernambuco",
-            "cep": "53280-270"
+            "street": "Av. Batalha do Tuiuti",
+            "district": "Aguas compridas",
+            "city": "Olinda",
+            "state": "Pernambuco",
+            "zipCode": "53280-270",
+            "_id": "62e3e7761d576f3ae4befb38"
         }],
-        "landline": "(81) 3000-0000",
-        "cellPhoneAndWhatsapp": "(81) 98995-0128",
-        "email": "mundodomarley.rec@gmail.com",
+        "responsible": "Uninformed",
+        "landline": [
+            "Uninformed"
+        ],
+        "cellPhoneOrWhatsapp": [
+            "(81) 98995-0128"
+        ],
         "instagram": "@mundo.domarley",
         "description": "Animais retirados das ruas, vitimas de maus tratos e abandono."
     });
     it("The new Ong or temporary home must be saved in the database", () => {
         ongsOrTemporaryHomes.save().then((data) => {
-            expect(data.title).toBe("teste ong");
+            expect(data.title).toBe("Mundo do Marley");
         });
     });
 })
@@ -77,17 +73,24 @@ describe("UPDATE route test", () => {
     it("You must edit the name and save the new ong or temporary home in the database", () => {
         const ongsOrTemporaryHomes = new ongsOrTemporaryHomesModel({
             "name": "Mundo do Marley",
-            "classification": "Associação protetora de animais",
+            "classification": [
+                "ONG"
+            ],
             "address": [{
-                "logradouro": "Av. Batalha do Tuiuti",
-                "bairro": "Aguas compridas",
-                "cidade": "Olinda",
-                "estado": "Pernambuco",
-                "cep": "53280-270"
+                "street": "Av. Batalha do Tuiuti",
+                "district": "Aguas compridas",
+                "city": "Olinda",
+                "state": "Pernambuco",
+                "zipCode": "53280-270",
+                "_id": "62e3e7761d576f3ae4befb38"
             }],
-            "landline": "(81) 3000-0000",
-            "cellPhoneAndWhatsapp": "(81) 98995-0128",
-            "email": "mundodomarley.rec@gmail.com",
+            "responsible": "Uninformed",
+            "landline": [
+                "Uninformed"
+            ],
+            "cellPhoneOrWhatsapp": [
+                "(81) 98995-0128"
+            ],
             "instagram": "@mundo.domarley",
             "description": "Animais retirados das ruas, vitimas de maus tratos e abandono."
         });
@@ -102,17 +105,24 @@ describe("DELETE route test", () => {
     it("Must delete the new ong or temporary home", () => {
         const ongsOrTemporaryHomes = new ongsOrTemporaryHomesModel({
             "name": "Mundo do Marley",
-            "classification": "Associação protetora de animais",
+            "classification": [
+                "ONG"
+            ],
             "address": [{
-                "logradouro": "Av. Batalha do Tuiuti",
-                "bairro": "Aguas compridas",
-                "cidade": "Olinda",
-                "estado": "Pernambuco",
-                "cep": "53280-270"
+                "street": "Av. Batalha do Tuiuti",
+                "district": "Aguas compridas",
+                "city": "Olinda",
+                "state": "Pernambuco",
+                "zipCode": "53280-270",
+                "_id": "62e3e7761d576f3ae4befb38"
             }],
-            "landline": "(81) 3000-0000",
-            "cellPhoneAndWhatsapp": "(81) 98995-0128",
-            "email": "mundodomarley.rec@gmail.com",
+            "responsible": "Uninformed",
+            "landline": [
+                "Uninformed"
+            ],
+            "cellPhoneOrWhatsapp": [
+                "(81) 98995-0128"
+            ],
             "instagram": "@mundo.domarley",
             "description": "Animais retirados das ruas, vitimas de maus tratos e abandono."
         });

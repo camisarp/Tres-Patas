@@ -2,24 +2,20 @@ const petsModel = require("../src/models/petsModel")
 
 describe("GET route test", () => {
     const pets = new petsModel({
-
         "name": "Marley",
         "species": "cachorro",
         "gender": "masculino",
-        "age": "8 meses",
+        "age": "9 meses",
         "disabilityOrIllness": [
-            "deficiente visual"
+            "deficiencia visual"
         ],
-        "descriptiondisabilityOrIllness": "Ele é cego dos dois olhos devido à uma má formação.",
+        "description": "Ele é cego dos dois olhos devido à uma má formação.",
         "status": "disponível",
         "neutered": false,
         "wormed": true,
         "vaccinated": true,
-        "size": "porte médio",
-        "ongsOrTemporaryHomesId": "62e09adeca201c49f6472732",
-        "responsible": "Camila",
-        "whatsapp": "(81) 99704-6802",
-        "email": "camilarp.rec@gmail.com"
+        "size": "porte medio",
+        "ongsOrTemporaryHomesId": "62e3e7761d576f3ae4befb39"
     });
     it("Must call the schema and return the correct pet name", () => {
         expect(pets.name).toBe("Marley");
@@ -31,13 +27,13 @@ describe("GET route test", () => {
         expect(pets.gender).toBe("masculino");
     });
     it("It must call the schema and return the correct age of the pet", () => {
-        expect(pets.age).toBe("8 meses");
+        expect(pets.age).toBe("9 meses");
     });
     it("Must call the schema and return the correct pet disability", () => {
-        expect(pets.disabilityOrIllness).toStrictEqual(["deficiente visual"]);
+        expect(pets.disabilityOrIllness).toStrictEqual(["deficiencia visual"]);
     });
     it("It must call the schema and return the description of the correct pet disease", () => {
-        expect(pets.descriptiondisabilityOrIllness).toBe("Ele é cego dos dois olhos devido à uma má formação.");
+        expect(pets.description).toBe("Ele é cego dos dois olhos devido à uma má formação.");
     });
     it("Must call the schema and return the correct pet status", () => {
         expect(pets.status).toBe("disponível");
@@ -52,24 +48,7 @@ describe("GET route test", () => {
         expect(pets.vaccinated).toBe(true);
     });
     it("Must call the schema and return the correct pet port", () => {
-        expect(pets.size).toBe("porte médio");
-    });
-    it("Must call the schema and return the correct pet ONG or temporary home", () => {
-        expect(
-            JSON.stringify(pets.ongsOrTemporaryHomesId).substring(
-                1,
-                JSON.stringify(pets.ongsOrTemporaryHomesId).length - 1
-            )
-        ).toBe("62e09adeca201c49f6472732");
-    });
-    it("It must call the schema and return the correct name of the pet responsible", () => {
-        expect(pets.responsible).toBe("Camila");
-    });
-    it("Must call the schema and return the pet's whatsapp", () => {
-        expect(pets.whatsapp).toBe("(81) 99704-6802");
-    });
-    it("Must call the schema and return the pet's whatsapp", () => {
-        expect(pets.email).toBe("camilarp.rec@gmail.com");
+        expect(pets.size).toBe("porte medio");
     });
 });
 
@@ -78,7 +57,7 @@ describe("CREATE route test", () => {
         "name": "Marley",
         "species": "cachorro",
         "gender": "masculino",
-        "age": "8 meses",
+        "age": "9 meses",
         "disabilityOrIllness": [
             "deficiencia visual"
         ],
@@ -87,11 +66,8 @@ describe("CREATE route test", () => {
         "neutered": false,
         "wormed": true,
         "vaccinated": true,
-        "size": "porte médio",
-        "ongsOrTemporaryHomesId": "62e09adeca201c49f6472732",
-        "responsible": "Camila",
-        "whatsapp": "(81) 99704-6802",
-        "email": "camilarp.rec@gmail.com"
+        "size": "porte medio",
+        "ongsOrTemporaryHomesId": "62e3e7761d576f3ae4befb39"
     });
     it("You must save the new pet in the database", () => {
         pets.save().then((data) => {
@@ -106,7 +82,7 @@ describe("UPDATE route test", () => {
             "name": "Marley",
             "species": "cachorro",
             "gender": "masculino",
-            "age": "8 meses",
+            "age": "9 meses",
             "disabilityOrIllness": [
                 "deficiencia visual"
             ],
@@ -115,15 +91,12 @@ describe("UPDATE route test", () => {
             "neutered": false,
             "wormed": true,
             "vaccinated": true,
-            "size": "porte médio",
-            "ongsOrTemporaryHomesId": "62e09adeca201c49f6472732",
-            "responsible": "Camila",
-            "whatsapp": "(81) 99704-6802",
-            "email": "camilarp.rec@gmail.com"
+            "size": "porte medio",
+            "ongsOrTemporaryHomesId": "62e3e7761d576f3ae4befb39",
         });
-        pets.title = "novo pet"
+        pets.title = "Marley"
         pets.save().then((data) => {
-            expect(data.name).toBe("novo pet");
+            expect(data.name).toBe("Marley");
         });
     });
 })
@@ -134,7 +107,7 @@ describe("DELETE route test", () => {
             "name": "Marley",
             "species": "cachorro",
             "gender": "masculino",
-            "age": "8 meses",
+            "age": "9 meses",
             "disabilityOrIllness": [
                 "deficiencia visual"
             ],
@@ -143,11 +116,8 @@ describe("DELETE route test", () => {
             "neutered": false,
             "wormed": true,
             "vaccinated": true,
-            "size": "porte médio",
-            "ongsOrTemporaryHomesId": "62e09adeca201c49f6472732",
-            "responsible": "Camila",
-            "whatsapp": "(81) 99704-6802",
-            "email": "camilarp.rec@gmail.com"
+            "size": "porte medio",
+            "ongsOrTemporaryHomesId": "62e3e7761d576f3ae4befb39"
         });
         pets.save().then((data) => {
             pets.delete().then((newdata) => {
