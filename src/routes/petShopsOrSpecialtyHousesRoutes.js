@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/petShopsOrSpecialtyHouses", controller.getAllPetShopsOrSpecialtyHouses);
 router.get("/petShopsOrSpecialtyHouses/address", controller.getByAddress);
-router.get("/petShopsOrSpecialtyHouses/:id", controller.getPetShopsOrSpecialtyHousesById);
+router.get("/petShopsOrSpecialtyHouse/:id", controller.getPetShopsOrSpecialtyHousesById);
 
 router.post("/petShopsOrSpecialtyHouse/registration", auth, controller.createNewPetShopsOrSpecialtyHouses);
 router.patch("/petShopsOrSpecialtyHouse/update/:id", auth, controller.updatePetShopsOrSpecialtyHousesById);

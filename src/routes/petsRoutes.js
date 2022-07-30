@@ -6,7 +6,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/pets", controller.getAllPets);
-router.get("/pets/:id", controller.getPetById);
+router.get("/pet/:id", controller.getPetById);
 
 router.post("/pet/registration", auth, controller.createNewPet);
 router.patch("/pet/update/:id", auth, controller.updatePetById);

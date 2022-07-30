@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/vetOrSpecialists", controller.getAllVetOrSpecialists);
 router.get("/vetOrSpecialists/address", controller.getByAddress);
-router.get("/vetOrSpecialists/:id", controller.getVetOrSpecialistsId);
+router.get("/vetOrSpecialist/:id", controller.getVetOrSpecialistsId);
 
 router.post("/vetOrSpecialist/registration", auth, controller.createNewVetOrSpecialists);
 router.patch("/vetOrSpecialist/update/:id", auth, controller.updateVetOrSpecialistsId);
