@@ -22,7 +22,7 @@
         }
       }
     },
-    "/user": {
+    "/registration": {
       "post": {
         "description": "",
         "parameters": [
@@ -49,7 +49,7 @@
         }
       }
     },
-    "/users": {
+    "/search": {
       "get": {
         "description": "",
         "parameters": [],
@@ -63,7 +63,7 @@
         }
       }
     },
-    "/user/{id}": {
+    "/login/{id}": {
       "post": {
         "description": "",
         "parameters": [
@@ -103,7 +103,9 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/delete/{id}": {
       "delete": {
         "description": "",
         "parameters": [
@@ -139,7 +141,33 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/pet/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pet/registration": {
       "post": {
         "description": "",
         "parameters": [
@@ -208,29 +236,7 @@
         }
       }
     },
-    "/pets/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
+    "/pet/update/{id}": {
       "patch": {
         "description": "",
         "parameters": [
@@ -300,7 +306,9 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/pet/delete/{id}": {
       "delete": {
         "description": "",
         "parameters": [
@@ -367,7 +375,7 @@
         }
       }
     },
-    "/ongsOrTemporaryHomes/{id}": {
+    "/ongsOrTemporaryHome/{id}": {
       "get": {
         "description": "",
         "parameters": [
@@ -389,7 +397,63 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/ongsOrTemporaryHomes/registration": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "classification": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "responsible": {
+                  "example": "any"
+                },
+                "landline": {
+                  "example": "any"
+                },
+                "cellPhoneOrWhatsapp": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "instagram": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ongsOrTemporaryHome/update/{id}": {
       "patch": {
         "description": "",
         "parameters": [
@@ -450,7 +514,9 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/ongsOrTemporaryHome/delete/{id}": {
       "delete": {
         "description": "",
         "parameters": [
@@ -477,60 +543,6 @@
         }
       }
     },
-    "/ongsOrTemporaryHomes/": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "classification": {
-                  "example": "any"
-                },
-                "address": {
-                  "example": "any"
-                },
-                "responsible": {
-                  "example": "any"
-                },
-                "landline": {
-                  "example": "any"
-                },
-                "cellPhoneOrWhatsapp": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "instagram": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
     "/petShopsOrSpecialtyHouses": {
       "get": {
         "description": "",
@@ -541,55 +553,6 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "classification": {
-                  "example": "any"
-                },
-                "address": {
-                  "example": "any"
-                },
-                "landline": {
-                  "example": "any"
-                },
-                "cellPhoneOrWhatsapp": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "instagram": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -620,7 +583,7 @@
         }
       }
     },
-    "/petShopsOrSpecialtyHouses/{id}": {
+    "/petShopsOrSpecialtyHouse/{id}": {
       "get": {
         "description": "",
         "parameters": [
@@ -642,7 +605,60 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/petShopsOrSpecialtyHouse/registration": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "classification": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "landline": {
+                  "example": "any"
+                },
+                "cellPhoneOrWhatsapp": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "instagram": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/petShopsOrSpecialtyHouse/update/{id}": {
       "patch": {
         "description": "",
         "parameters": [
@@ -700,7 +716,9 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/petShopsOrSpecialtyHouse/delete/{id}": {
       "delete": {
         "description": "",
         "parameters": [
@@ -727,7 +745,7 @@
         }
       }
     },
-    "/VetOrSpecialists": {
+    "/vetOrSpecialists": {
       "get": {
         "description": "",
         "parameters": [],
@@ -742,7 +760,56 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/vetOrSpecialists/address": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "district",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/vetOrSpecialists/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/vetOrSpecialist/registration": {
       "post": {
         "description": "",
         "parameters": [
@@ -796,52 +863,7 @@
         }
       }
     },
-    "/VetOrSpecialists/address": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "district",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/VetOrSpecialists/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
+    "/vetOrSpecialist/update/{id}": {
       "patch": {
         "description": "",
         "parameters": [
@@ -902,7 +924,9 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/vetOrSpecialist/delete/{id}": {
       "delete": {
         "description": "",
         "parameters": [
